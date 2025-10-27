@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIVAS - Laser Coaxial Calibration Device</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            border-bottom: 2px solid #2c84d0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: clamp(22px, 5vw, 28px);
+            color: #2c84d0;
+            margin-bottom: 10px;
+        }
+        .header .update-time {
+            color: #666;
+            font-size: 14px;
+        }
+        .section {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .section h2 {
+            font-size: clamp(18px, 4vw, 22px);
+            color: #2c84d0;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        .info-list {
+            list-style: none;
+        }
+        .info-list li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .info-list li span {
+            font-weight: bold;
+            color: #555;
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+        .feature-list {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        .feature-list li {
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        .tech-table th, .tech-table td {
+            border: 1px solid #eee;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        .tech-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #555;
+        }
+        @media (max-width: 768px) {
+            .tech-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        .company-intro {
+            margin-top: 15px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .action-buttons {  /* Unified button container style */
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .action-btn {  /* Unified button base style */
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+        .action-btn.ios {
+            background-color: #000;
+            color: #fff;
+        }
+        .action-btn.android {
+            background-color: #3ddc84;
+            color: #000;
+        }
+        .action-btn.manual {  /* User manual button style */
+            background-color: #2c84d0;
+            color: white;
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .action-btn i {
+            font-size: 20px;
+        }
+        .wechat-tip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+        .wechat-tip-content {
+            color: white;
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+        }
+        .wechat-tip-content p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .wechat-icon {
+            font-size: 120px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .wechat-icon::after {
+            content: 'ⓘ';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background-color: #2c84d0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- WeChat environment prompt popup -->
+    <div class="wechat-tip" id="wechatTip">
+        <div class="wechat-tip-content">
+            <div class="wechat-icon">
+                <i class="fab fa-weixin"></i>
+            </div>
+            <p>Please click the top-right <i class="fas fa-ellipsis-v"></i> icon</p>
+            <p>Select "Open in default browser" to download the app</p>
+        </div>
+    </div>
+    <!-- Header title area -->
+    <div class="header">
+        <h1>AIVAS APP</h1>
+        <h1>Laser Coaxial Calibration Device</h1>
+    </div>
+
+    <!-- App basic information area -->
+    <div class="section">
+        <h2>App Basic Information</h2>
+        <ul class="info-list">
+            <li><span>Software Name:</span>AIVAS</li>
+            <li><span>Current Version:</span>v1.1</li>
+            <li><span>Supported Systems:</span>iOS/Android</li>
+            <li><span>Update Time:</span>2025-08-28</li>
+        </ul>
+        
+        <!-- Combined button area (download buttons + user manual button) -->
+        <div class="action-buttons">
+            <a href="https://apps.apple.com/cn/app/ai-vas/id6752219780" class="action-btn ios" id="iosDownload">
+                <i class="fab fa-apple"></i>
+                <span>Download from App Store</span>
+            </a>
+            <a href="https://wwpv.lanzouw.com/iP18m38cnlpi" class="action-btn android" id="androidDownload">
+                <i class="fas fa-download"></i>
+                <span>Download Android APK</span>
+            </a>
+            <a href="https://lightstart-1376045481.cos.ap-guangzhou.myqcloud.com/VAS%E7%94%A8%E6%88%B7%E6%89%8B%E5%86%8C.pdf" target="_blank" class="action-btn manual" id="manualDownload">
+                <i class="fas fa-file-pdf"></i>
+                <span>Download User Manual</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Technical specifications area -->
+    <div class="section">
+        <h2>Technical Specifications</h2>
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Version Number</th>
+                    <th>App Size</th>
+                    <th>System Requirements</th>
+                    <th>Compatible Devices/Architectures</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>iOS Version</td>
+                    <td>v1.1</td>
+                    <td>96.6 MB</td>
+                    <td>iOS 15.6 or later</td>
+                    <td>iPhone, iPad</td>
+                </tr>
+                <tr>
+                    <td>Android Version</td>
+                    <td>v1.0</td>
+                    <td>94.2 MB</td>
+                    <td>Android 10.0 (API 26) or later</td>
+                    <td>ARM64, ARMv7</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- About AIVAS area -->
+    <div class="section">
+        <h2>About AIVAS APP</h2>
+        <p class="company-intro">
+            Traditional coaxial calibration relies on manual experience, taking 3-5 minutes, and is prone to problems such as poor edge cutting quality, inconsistent edges, and bottom slag due to human errors. The new AIVAS visual calibrator from Guangqi, relying on AI vision technology + high-precision circle fitting algorithm, reshapes the calibration process to achieve a dual breakthrough in accuracy and efficiency for you.
+        </p>
+    </div>
+
+    <!-- Core features area -->
+    <div class="section">
+        <h2>Functional Advantages</h2>
+        <ul class="feature-list">
+            <li><strong>AI Intelligent Analysis</strong>: High-resolution visual sensor and AI intelligent algorithm, calibration accuracy <0.08mm, AI visual recognition, one-step manual debugging</li>
+            <li><strong>High Success Rate</strong>: 100% success rate for coaxial adjustment.</li>
+            <li><strong>Safe and Reliable</strong>: Red light simulation, no laser emission, no risk, safer.</li>
+        </ul>
+    </div>
+
+    <!-- Company introduction area -->
+    <div class="section">
+        <h2>Company Introduction</h2>
+        <p class="company-intro">
+            Fuzhou Jin'an Guangqi Intelligent Technology Co., Ltd. is a professional provider of industrial automation and intelligent manufacturing solutions, as well as a high-tech enterprise focusing on the research, development, production and sales of industrial laser equipment. The company is committed to providing high-quality laser processing equipment and intelligent solutions for global manufacturing customers, promoting the transformation and upgrading of traditional manufacturing to intelligent manufacturing.
+        </p>
+    </div>
+    <script>
+        function isWechatBrowser() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            return userAgent.includes('micromessenger');
+        }
+        const iosDownload = document.getElementById('iosDownload');
+        const androidDownload = document.getElementById('androidDownload');
+        const wechatTip = document.getElementById('wechatTip');
+        const manualDownload = document.getElementById('manualDownload');
+        if (isWechatBrowser()) {
+            function showWechatTip(e) {
+                e.preventDefault(); 
+                wechatTip.style.display = 'flex'; 
+            }
+            iosDownload.addEventListener('click', showWechatTip);
+            androidDownload.addEventListener('click', showWechatTip);
+            manualDownload.addEventListener('click', showWechatTip);
+            wechatTip.addEventListener('click', function() {
+                wechatTip.style.display = 'none';
+            });
+        } else {
+            iosDownload.href = 'https://apps.apple.com/cn/app/ai-vas/id6752219780';
+            androidDownload.href = 'https://wwpv.lanzouw.com/iP18m38cnlpi';
+        }
+    </script>
+</body>
+</html>
